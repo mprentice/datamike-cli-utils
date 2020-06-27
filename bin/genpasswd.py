@@ -137,11 +137,12 @@ def get_elements(cfg: GenPasswordConfig) -> List[str]:
         elements = [s for s in cfg.symbols]
     elif cfg.dict_file:
         log.info("Using %d words from: %s", cfg.num_choices, cfg.dict_file.name)
-        elements = [
-            w.strip()
-            for w in cfg.dict_file.readlines()
-            if len(w.strip()) >= MIN_WORD_LENGTH
-        ]
+        with closing(cfg.dict_file):
+            elements = [
+                w.strip()
+                for w in cfg.dict_file.readlines()
+                if len(w.strip()) >= MIN_WORD_LENGTH
+            ]
     else:
         err = "use_symbols is False and dict_file is empty in {}".format(cfg)
         raise ValueError(err)
