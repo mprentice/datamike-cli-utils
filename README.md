@@ -19,6 +19,11 @@ For zsh:
 
     echo 'export PATH="${HOME}/.local/datamike-cli-utils/bin:${PATH}"' >> ~/.zshenv
 
+### Pre-requisites
+
+`batchrename.py` and `genpassword.py` have no dependencies beyond the python3
+standard library. Both require python3.
+
 ## Usage
 
 ### batchrename.py
